@@ -1,9 +1,11 @@
+using AdvertTrackerAPI.DbContexts;
 using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,6 +36,13 @@ namespace AdvertTrackerAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AdvertTrackerAPI", Version = "v1" });
             });
+
+
+                 services.AddDbContext<ApplicationDbContext>(options =>
+                 {
+                     options.UseSqlServer(Configuration.GetConnectionString("AdvertTrackerConnection"),
+                         sqlOptions => sqlOptions.EnableRetryOnFailure(50));
+                 });
 
             services.AddHangfire(configuration => configuration
       .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
