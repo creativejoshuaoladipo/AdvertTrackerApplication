@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<link> <a href="" class="advert" onclick="advertClick()">Click Here to View the Site </a>
+<link />
+<link> <a href="" class="after" onclick="">GOOGLE AM</a>
+<link />
+
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        function advertClick() {
+            alert("World Greatest!!!")
+        }
+
+
+        $(document).ready(function () {
+
+            $(".after").click(function () {
+
+                alert("You clicked  on google!");
+
+            });
+
+        });
+    </script>
+}
