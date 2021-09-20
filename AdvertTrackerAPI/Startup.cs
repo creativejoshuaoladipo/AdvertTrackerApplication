@@ -30,7 +30,8 @@ namespace AdvertTrackerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(corsOption => corsOption.AddPolicy("policy", 
+                cors => cors.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
            
             services.AddSwaggerGen(c =>
             {
@@ -76,6 +77,7 @@ namespace AdvertTrackerAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("policy");
 
             app.UseHangfireDashboard();
             // backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
