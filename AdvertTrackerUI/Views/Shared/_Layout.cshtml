@@ -30,6 +30,7 @@
         </nav>
     </header>
     <div class="container">
+        <a href="" class="advert" >Click Here to View the Site </a>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -43,6 +44,58 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>*
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+
+        //$(document).ready(function () {
+            $("a.advert").click(function (e) {
+               
+                $.ajax({
+                    type: "GET",
+                    url: "https://localhost:44394/api/Home",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        //  alert("came back");
+                       // console.log("came back");
+
+                       window.location.href = response.url;
+
+
+
+
+                        //Display Asp.Net Web API response in console log   
+                        //You can see console log value in developer tool   
+                        //by pressing F12 function key.  
+                       // console.log(response.url);
+                    },
+                    error: function (xhr, textStatus, error) {
+                        //console.log(xhr.responseText);
+                        //console.log(xhr.statusText);
+                        //console.log(textStatus);
+                        //console.log(error);
+                    },
+                    complete: function (data) {
+                        // alert("done");
+                        //alert(data);
+                       // console.log("done");
+                        //console.table(data);
+                    }
+
+                });
+                e.preventDefault();
+            });
+
+
+        //});
+
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
